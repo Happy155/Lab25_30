@@ -58,6 +58,11 @@ Do uruchomienia aplikacji wymagane jest środowisko z zainstalowanym Pythonem or
 Po wykonaniu powyższych kroków strona powinna już działać i być dostępna pod adresem http://localhost:8000.
 
 ## Zrzuty ekranu
+![Aplikacja publiczna][aplikacja-publiczna-screenshot]
+![Aplikacja panel][aplikacja-panel-screenshot]
+![Panel administracyjny][panel-administracyjny-screenshot]
+![Formularz][formularz-screenshot]
+![Endpoint API][endpoint-api-screenshot]
 
 
 
@@ -70,21 +75,17 @@ Po wykonaniu powyższych kroków strona powinna już działać i być dostępna 
 
 
 
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [django]: https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green
 [django-url]: https://www.djangoproject.com/
-
 [django-rest-framework]: https://img.shields.io/badge/Django_REST_Framework-092E20?style=for-the-badge&logo=django&logoColor=green
 [django-rest-framework-url]: https://www.django-rest-framework.org/
-
 [sqlite]: https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=SQLite&logoColor=white
 [sqlite-url]: https://sqlite.org/
-
 [tailwind-css]: https://img.shields.io/badge/Tailwind_CSS-2E3A57?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC
 [tailwind-css-url]: https://tailwindcss.com/
+
+[aplikacja-publiczna-screenshot]: images/Aplikacja%20publiczna.png
+[aplikacja-panel-screenshot]: images/Aplikacja%20panel.png
+[panel-administracyjny-screenshot]: images/Panel%20administracyjny.png
+[formularz-screenshot]: images/Formularz.png
+[endpoint-api-screenshot]: images/Endpoint%20API.png
