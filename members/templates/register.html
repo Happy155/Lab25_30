@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Zarejestruj nowe konto</h2>
+    </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div class="bg-white shadow rounded-lg">
+        <div class="p-8">
+          <form class="space-y-6"
+                action="{% url 'register' %}"
+                method="POST"
+                autocomplete="off">
+            {% csrf_token %}
+            <div>
+              <label for="{{ form.username.id_for_label }}"
+                     class="block text-sm/6 font-medium text-gray-900">Nazwa użytkownika</label>
+              <div class="mt-2">{{ form.username }}</div>
+              {% if form.username.errors %}<p class="mt-1 text-sm text-red-600">{{ form.username.errors.0 }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.email.id_for_label }}"
+                     class="block text-sm/6 font-medium text-gray-900">Email</label>
+              <div class="mt-2">{{ form.email }}</div>
+              {% if form.email.errors %}<p class="mt-1 text-sm text-red-600">{{ form.email.errors.0 }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.password1.id_for_label }}"
+                     class="block text-sm/6 font-medium text-gray-900">Hasło</label>
+              <div class="mt-2">{{ form.password1 }}</div>
+              {% if form.password1.errors %}<p class="mt-1 text-sm text-red-600">{{ form.password1.errors.0 }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.password2.id_for_label }}"
+                     class="block text-sm/6 font-medium text-gray-900">Powtórz hasło</label>
+              <div class="mt-2">{{ form.password2 }}</div>
+              {% if form.password2.errors %}<p class="mt-1 text-sm text-red-600">{{ form.password2.errors.0 }}</p>{% endif %}
+            </div>
+            <div>
+              <button type="submit"
+                      class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-sm">
+                Zarejestruj się
+              </button>
+            </div>
+          </form>
+          <p class="mt-10 text-center text-sm/6 text-gray-500">
+            Masz już konto?
+            <a href="{% url 'login' %}"
+               class="font-semibold text-blue-600 hover:text-blue-700 transition">Zaloguj się</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

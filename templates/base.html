@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            {% block title %}Strona główna{% endblock %}
+        </title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body class="bg-gray-100">
+        {% include "messages.html" %}
+        {% include "navbar.html" %}
+        {% block content %}{% endblock %}
+        {% block extra_scripts %}
+            <script src="{% static 'js/toast.js' %}"></script>
+            <script src="{% static 'js/navbar.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>

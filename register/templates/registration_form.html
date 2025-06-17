@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Rejestracja na szkolenie{% endblock %}
+{% block content %}
+  <div class="container mx-auto py-12 px-4">
+    <div class="max-w-lg mx-auto bg-white shadow rounded-lg">
+      <div class="p-8">
+        <h2 class="text-2xl font-semibold text-blue-700 mb-8 text-center">Rejestracja na szkolenie</h2>
+        <form method="post" class="space-y-8">
+          {% csrf_token %}
+          <div>
+            <label for="{{ form.course.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">Szkolenie</label>
+            {{ form.course|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.course.errors %}<p class="text-red-600 text-sm mt-1">{{ form.course.errors }}</p>{% endif %}
+          </div>
+          <div>
+            <label for="{{ form.first_name.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">Imię</label>
+            {{ form.first_name|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.first_name.errors %}<p class="text-red-600 text-sm mt-1">{{ form.first_name.errors }}</p>{% endif %}
+          </div>
+          <div>
+            <label for="{{ form.last_name.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">Nazwisko</label>
+            {{ form.last_name|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.last_name.errors %}<p class="text-red-600 text-sm mt-1">{{ form.last_name.errors }}</p>{% endif %}
+          </div>
+          <div>
+            <label for="{{ form.phone.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">Numer telefonu</label>
+            {{ form.phone|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.phone.errors %}<p class="text-red-600 text-sm mt-1">{{ form.phone.errors }}</p>{% endif %}
+          </div>
+          <div>
+            <label for="{{ form.email.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            {{ form.email|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.email.errors %}<p class="text-red-600 text-sm mt-1">{{ form.email.errors }}</p>{% endif %}
+          </div>
+          <div class="flex items-center">
+            {{ form.gdpr_consent|add_class:"h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" }}
+            <label for="{{ form.gdpr_consent.id_for_label }}"
+                   class="ml-2 block text-sm text-gray-700 cursor-pointer select-none">
+              Zgadzam się na przetwarzanie moich danych osobowych (RODO)
+            </label>
+          </div>
+          {% if form.gdpr_consent.errors %}<p class="text-red-600 text-sm mt-1">{{ form.gdpr_consent.errors }}</p>{% endif %}
+          <div>
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-sm">
+              Zarejestruj się
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

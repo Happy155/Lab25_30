@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Dokumentacja API{% endblock %}
+{% block content %}
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <div class="bg-white shadow-md rounded-xl overflow-hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-blue-700">Dokumentacja API</h2>
+                </div>
+                {% if api_endpoints %}
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto text-sm">
+                            <thead class="bg-gray-50 text-gray-600 font-semibold text-left">
+                                <tr>
+                                    <th class="px-4 py-3">Metoda</th>
+                                    <th class="px-4 py-3">Endpoint</th>
+                                    <th class="px-4 py-3">Opis</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                {% for endpoint in api_endpoints %}
+                                    <tr class="hover:bg-gray-50 transition cursor-pointer"
+                                        onclick="window.location='{% if 'register/<int:pk>' in endpoint.url or 'register/<id>' in endpoint.url %}/api/register/1/{% else %}{{ endpoint.url }}{% endif %}'">
+                                        <td class="px-4 py-3">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium {% if endpoint.method == 'GET' %}bg-blue-100 text-blue-800 {% elif endpoint.method == 'POST' %}bg-green-100 text-green-800 {% elif endpoint.method == 'PUT' %}bg-yellow-100 text-yellow-800 {% elif endpoint.method == 'DELETE' %}bg-red-100 text-red-800 {% endif %}">
+                                                {{ endpoint.method }}
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <code class="px-2 py-1 bg-gray-100 rounded text-gray-800 font-mono text-sm">{{ endpoint.url }}</code>
+                                        </td>
+                                        <td class="px-4 py-3 text-gray-600">{{ endpoint.description }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-16 text-gray-500">
+                        <i class="ti ti-file-x text-6xl mb-4"></i>
+                        <p class="text-lg mb-3">Brak dostępnych endpointów API</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,120 @@
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button id="mobile-menu-button"
+                type="button"
+                class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
+                aria-controls="mobile-menu"
+                aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Menu główne</span>
+          <svg id="icon-menu"
+               class="block size-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke-width="1.5"
+               stroke="currentColor"
+               aria-hidden="true"
+               data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="icon-close"
+               class="hidden size-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke-width="1.5"
+               stroke="currentColor"
+               aria-hidden="true"
+               data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a href="{% url 'main_panel' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'main_panel' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}"
+               aria-current="{% if request.resolver_match.url_name == 'main_panel' %}page{% else %}false{% endif %}">Zarządzanie ofertą</a>
+            <a href="{% url 'public_category_list' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'public_category_list' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Kategorie</a>
+            <a href="{% url 'registration_form' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'registration_form' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Zgłoszenia</a>
+            <a href="{% url 'issue_list' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'issue_list' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Problemy</a>
+            <a href="{% url 'api_documentation' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'api_documentation' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">API</a>
+            {% if user.is_authenticated and user.is_staff %}
+              <a href="/admin/"
+                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Panel Admina</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        {% if user.is_authenticated %}
+          <div class="relative ml-3">
+            <div>
+              <button type="button"
+                      id="user-menu-button"
+                      class="relative rounded-md bg-gray-800 px-3 py-1 text-sm font-medium text-white hover:bg-gray-700 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+                      aria-expanded="false"
+                      aria-haspopup="true">
+                <span class="sr-only">Menu użytkownika</span>
+                {{ user.username }}
+                <svg id="user-menu-arrow"
+                     class="inline-block ml-1 w-4 h-4 text-white transition-transform duration-200"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            <div id="user-menu"
+                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden hidden"
+                 role="menu"
+                 aria-orientation="vertical"
+                 aria-labelledby="user-menu-button"
+                 tabindex="-1">
+              <a href="{% url 'logout' %}"
+                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="user-menu-item-2">Wyloguj się</a>
+            </div>
+          </div>
+        {% else %}
+          <div class="flex space-x-4">
+            <a href="{% url 'login' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'login' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Zaloguj się</a>
+            <a href="{% url 'register' %}"
+               class="rounded-md px-3 py-2 text-sm font-medium {% if request.resolver_match.url_name == 'register' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Zarejestruj się</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="sm:hidden hidden" id="mobile-menu">
+    <div class="space-y-1 px-2 pt-2 pb-3">
+      <a href="{% url 'main_panel' %}"
+         class="block rounded-md px-3 py-2 text-base font-medium {% if request.resolver_match.url_name == 'main_panel' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}"
+         aria-current="{% if request.resolver_match.url_name == 'main_panel' %}page{% else %}false{% endif %}">Zarządzanie ofertą</a>
+      <a href="{% url 'public_category_list' %}"
+         class="block rounded-md px-3 py-2 text-base font-medium {% if request.resolver_match.url_name == 'public_category_list' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Kategorie</a>
+      <a href="{% url 'registration_form' %}"
+         class="block rounded-md px-3 py-2 text-base font-medium {% if request.resolver_match.url_name == 'registration_form' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Zgłoszenia</a>
+      <a href="{% url 'issue_list' %}"
+         class="block rounded-md px-3 py-2 text-base font-medium {% if request.resolver_match.url_name == 'issue_list' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">Problemy</a>
+      <a href="{% url 'api_documentation' %}"
+         class="block rounded-md px-3 py-2 text-base font-medium {% if request.resolver_match.url_name == 'api_documentation' %}bg-gray-900 text-white{% else %}text-gray-300 hover:bg-gray-700 hover:text-white{% endif %}">API</a>
+      {% if user.is_authenticated and user.is_staff %}
+        <a href="/admin/"
+           class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Panel Admina</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>

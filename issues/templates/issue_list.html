@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Lista problemów{% endblock %}
+{% block content %}
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="bg-white shadow-md rounded-xl overflow-hidden">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold flex items-center gap-2 text-blue-700">
+            <i class="ti ti-bug"></i> Lista problemów
+          </h2>
+          <a href="{% url 'report_issue_form' %}"
+             class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+            <i class="ti ti-plus"></i> Zgłoś problem
+          </a>
+        </div>
+        {% if issues %}
+          <div class="overflow-x-auto">
+            <table class="min-w-full table-auto text-sm">
+              <thead class="bg-gray-50 text-gray-600 font-semibold text-left">
+                <tr>
+                  <th class="px-4 py-3">Kolejność</th>
+                  <th class="px-4 py-3">Temat</th>
+                  <th class="px-4 py-3">Autor</th>
+                  <th class="px-4 py-3">Moduł</th>
+                  <th class="px-4 py-3">Zgłoszono</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {% for issue in issues %}
+                  <tr class="hover:bg-gray-50 transition cursor-pointer"
+                      onclick="window.location='{% url 'issue_detail' issue.id %}';"
+                      style="cursor:pointer">
+                    <td class="px-4 py-3 font-medium text-gray-700">#{{ issue.id }}</td>
+                    <td class="px-4 py-3 font-semibold text-gray-700">{{ issue.subject }}</td>
+                    <td class="px-4 py-3 text-gray-700">
+                      <span class="inline-flex items-center gap-2">
+                        <i class="ti ti-user-circle text-lg"></i> {{ issue.author }}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-block px-3 py-1 text-xs rounded-full font-medium {% if issue.module == 'offer_panel' %} bg-cyan-100 text-cyan-700 {% elif issue.module == 'offer_public' %} bg-emerald-100 text-emerald-700 {% elif issue.module == 'register' %} bg-violet-100 text-violet-700 {% elif issue.module == 'issues' %} bg-orange-100 text-orange-700 {% else %} bg-gray-200 text-gray-600 {% endif %}">
+                        {{ issue.get_module_display }}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3">
+                      <div class="text-gray-900">{{ issue.submitted_at|date:"d M Y" }}</div>
+                      <small class="text-gray-500 text-xs">{{ issue.submitted_at|time:"H:i" }}</small>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="text-center py-16 text-gray-500">
+            <i class="ti ti-folder-x text-6xl mb-4"></i>
+            <p class="text-lg mb-3">Nie zgłoszono żadnych problemów</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

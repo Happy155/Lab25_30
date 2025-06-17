@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Kategorie{% endblock %}
+{% block content %}
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="bg-white shadow-md rounded-xl overflow-hidden">
+      <div class="p-6">
+        <div class="flex items-center mb-6">
+          <h2 class="text-2xl font-semibold flex items-center gap-2 text-blue-700">
+            <i class="ti ti-folder"></i> Kategorie
+          </h2>
+        </div>
+        {% if categories %}
+          <div class="overflow-x-auto">
+            <table class="min-w-full table-auto text-sm">
+              <thead class="bg-gray-50 text-gray-600 font-semibold text-left">
+                <tr>
+                  <th class="px-4 py-3">Kolejność</th>
+                  <th class="px-4 py-3">Nazwa</th>
+                  <th class="px-4 py-3">Liczba szkoleń</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {% for category in categories %}
+                  <tr class="hover:bg-gray-50 transition cursor-pointer"
+                      onclick="window.location.href='{% url 'course_list_by_category' category.name %}'">
+                    <td class="px-4 py-3 font-medium text-gray-700">#{{ category.order }}</td>
+                    <td class="px-4 py-3 font-semibold text-gray-700">{{ category.name }}</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+                        <i class="ti ti-book"></i> {{ category.published_courses_count }}
+                      </span>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="text-center py-16 text-gray-500">
+            <i class="ti ti-folder-x text-6xl mb-4"></i>
+            <p class="text-lg mb-3">Nie znaleziono kategorii</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

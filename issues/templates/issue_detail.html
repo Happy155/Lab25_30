@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Problem #{{ issue.id }} - {{ issue.subject }}{% endblock %}
+{% block content %}
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="mb-6">
+      <a href="{% url 'issue_list' %}"
+         class="inline-flex items-center gap-2 px-4 py-2 hover:bg-gray-200 text-blue-700 rounded-md text-sm font-medium transition">
+        <i class="ti ti-arrow-left"></i> Powrót do listy problemów
+      </a>
+    </div>
+    <div class="bg-white shadow-md rounded-xl overflow-hidden">
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h1 class="text-2xl font-semibold text-blue-700">{{ issue.subject }}</h1>
+          </div>
+          <div class="text-right">
+            <div class="text-lg font-semibold text-gray-700 mb-1">#{{ issue.id }}</div>
+            <div class="text-sm text-gray-500 flex items-center justify-end gap-1">
+              <i class="ti ti-calendar"></i> {{ issue.submitted_at|date:"d M Y H:i" }}
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-2">
+            <div class="bg-gray-50 rounded-lg p-4 overflow-auto"
+                 id="description-panel">
+              <h2 class="text-lg font-semibold text-gray-900 mb-3">Opis</h2>
+              <div class="prose max-w-none">
+                <p class="text-gray-700 whitespace-pre-line break-words">{{ issue.description }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-1 space-y-6 flex flex-col" id="sidebar-container">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <h2 class="text-lg font-semibold text-gray-900 mb-4">Szczegóły problemu</h2>
+              <dl class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <dt class="text-gray-600">Autor</dt>
+                  <dd class="col-span-2 flex items-center gap-1 text-gray-900">
+                    <i class="ti ti-user-circle"></i> {{ issue.author }}
+                  </dd>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <dt class="text-gray-600">Moduł</dt>
+                  <dd class="col-span-2">
+                    <span class="inline-block px-3 py-1 text-xs rounded-full font-medium {% if issue.module == 'offer_panel' %} bg-cyan-100 text-cyan-700 {% elif issue.module == 'offer_public' %} bg-emerald-100 text-emerald-700 {% elif issue.module == 'register' %} bg-violet-100 text-violet-700 {% elif issue.module == 'issues' %} bg-orange-100 text-orange-700 {% else %} bg-gray-200 text-gray-600 {% endif %}">
+                      {{ issue.get_module_display }}
+                    </span>
+                  </dd>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <dt class="text-gray-600">Data</dt>
+                  <dd class="col-span-2 text-gray-900">
+                    {{ issue.submitted_at|date:"d M Y" }}
+                  </dd>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <dt class="text-gray-600">Czas</dt>
+                  <dd class="col-span-2 text-gray-900">
+                    {{ issue.submitted_at|time:"H:i" }}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            {% if issue.attachment %}
+              <div class="bg-gray-50 rounded-lg p-4 flex-1">
+                <h2 class="text-lg font-semibold text-gray-900 mb-3">Załącznik</h2>
+                <img src="{{ issue.attachment.url }}"
+                     class="rounded-lg w-full"
+                     alt="Issue attachment" />
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_scripts %}
+  {{ block.super }}
+  <script src="{% static 'js/issue_detail.js' %}"></script>
+{% endblock %}

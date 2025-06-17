@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Dodaj szkolenie{% endblock %}
+{% block content %}
+  <div class="container mx-auto py-12 px-4">
+    <div class="max-w-3xl mx-auto bg-white shadow rounded-lg">
+      <div class="p-8">
+        <h2 class="text-2xl font-semibold mb-8 text-center text-blue-700">Dodaj szkolenie</h2>
+        <form method="post" class="space-y-8">
+          {% csrf_token %}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <div>
+              <label for="{{ form.category.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Kategoria</label>
+              {{ form.category|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+              {% if form.category.errors %}<p class="text-red-600 text-sm mt-1">{{ form.category.errors }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.title.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Tytuł</label>
+              {{ form.title|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+              {% if form.title.errors %}<p class="text-red-600 text-sm mt-1">{{ form.title.errors }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.number.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Numer</label>
+              {{ form.number|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+              {% if form.number.errors %}<p class="text-red-600 text-sm mt-1">{{ form.number.errors }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.order.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Kolejność</label>
+              {{ form.order|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+              {% if form.order.errors %}<p class="text-red-600 text-sm mt-1">{{ form.order.errors }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="{{ form.duration_hours.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Czas trwania (godziny)</label>
+              {{ form.duration_hours|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+              {% if form.duration_hours.errors %}
+                <p class="text-red-600 text-sm mt-1">{{ form.duration_hours.errors }}</p>
+              {% endif %}
+            </div>
+            <div>
+              <label for="{{ form.price.id_for_label }}"
+                     class="block text-sm font-medium text-gray-700 mb-1">Cena (zł)</label>
+              {{ form.price|add_class:"w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"|attr:"step:1" }}
+              {% if form.price.errors %}<p class="text-red-600 text-sm mt-1">{{ form.price.errors }}</p>{% endif %}
+            </div>
+          </div>
+          <div>
+            <label for="{{ form.description.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-2">Opis</label>
+            {{ form.description|add_class:"w-full rounded border border-gray-300 px-3 py-2 h-28 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+            {% if form.description.errors %}<p class="text-red-600 text-sm mt-1">{{ form.description.errors }}</p>{% endif %}
+          </div>
+          <div class="flex items-center justify-start space-x-4">
+            <div class="flex items-center">
+              {{ form.is_published|add_class:"h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" }}
+              <label for="{{ form.is_published.id_for_label }}"
+                     class="ml-2 block text-sm text-gray-700 cursor-pointer select-none">
+                Czy szkolenie ma być opublikowane?
+              </label>
+            </div>
+            {% if form.is_published.errors %}<p class="text-red-600 text-sm mt-1">{{ form.is_published.errors }}</p>{% endif %}
+          </div>
+          <div>
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-sm">
+              Stwórz szkolenie
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

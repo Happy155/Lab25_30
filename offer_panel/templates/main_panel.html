@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Zarządzanie ofertą{% endblock %}
+{% block content %}
+  <div class="bg-gray-100 text-gray-800 min-h-[calc(100vh-80px)] py-10">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="bg-white shadow-md rounded-xl overflow-hidden">
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-blue-700 flex items-center gap-2 mb-6">
+            <i class="ti ti-settings"></i> Zarządzanie ofertą
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+            <div class="md:pr-6 py-4 md:py-0">
+              <h3 class="text-lg font-medium text-gray-700 flex items-center gap-2 mb-4">
+                <i class="ti ti-folder text-blue-500"></i> Kategorie
+              </h3>
+              <div class="flex flex-col gap-3">
+                <a href="{% url 'category_list' %}"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 font-medium rounded-md hover:bg-blue-50 transition">
+                  <i class="ti ti-list"></i> Wyświetl kategorie
+                </a>
+                <a href="{% url 'add_category' %}"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-green-500 text-green-600 font-medium rounded-md hover:bg-green-50 transition">
+                  <i class="ti ti-plus"></i> Dodaj kategorię
+                </a>
+              </div>
+            </div>
+            <div class="md:pl-6 py-4 md:py-0">
+              <h3 class="text-lg font-medium text-gray-700 flex items-center gap-2 mb-4">
+                <i class="ti ti-book text-blue-500"></i> Szkolenia
+              </h3>
+              <div class="flex flex-col gap-3">
+                <a href="{% url 'course_list' %}"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 font-medium rounded-md hover:bg-blue-50 transition">
+                  <i class="ti ti-list"></i> Wyświetl szkolenia
+                </a>
+                <a href="{% url 'add_course' %}"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-green-500 text-green-600 font-medium rounded-md hover:bg-green-50 transition">
+                  <i class="ti ti-plus"></i> Dodaj szkolenie
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
