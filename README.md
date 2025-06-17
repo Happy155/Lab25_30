@@ -57,6 +57,8 @@ Do uruchomienia aplikacji wymagane jest środowisko z zainstalowanym Pythonem or
    ```
 Po wykonaniu powyższych kroków strona powinna już działać i być dostępna pod adresem http://localhost:8000.
 
+Do repozytorium dołączona została wstępnie wypełniona baza danych, w której znajduje się również utworzone konto administratora. Dane logowania do konta administratora to login `admin` oraz hasło `admin`.
+
 ## Zrzuty ekranu
 ![Aplikacja publiczna][aplikacja-publiczna-screenshot]
 ![Aplikacja panel][aplikacja-panel-screenshot]
@@ -84,8 +86,8 @@ Po wykonaniu powyższych kroków strona powinna już działać i być dostępna 
 [tailwind-css]: https://img.shields.io/badge/Tailwind_CSS-2E3A57?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC
 [tailwind-css-url]: https://tailwindcss.com/
 
-[aplikacja-publiczna-screenshot]: images/Aplikacja%20publiczna.png
-[aplikacja-panel-screenshot]: images/Aplikacja%20panel.png
-[panel-administracyjny-screenshot]: images/Panel%20administracyjny.png
-[formularz-screenshot]: images/Formularz.png
-[endpoint-api-screenshot]: images/Endpoint%20API.png
+[aplikacja-publiczna-screenshot]: media/images/Aplikacja%20publiczna.png
+[aplikacja-panel-screenshot]: media/images/Aplikacja%20panel.png
+[panel-administracyjny-screenshot]: media/images/Panel%20administracyjny.png
+[formularz-screenshot]: media/images/Formularz.png
+[endpoint-api-screenshot]: media/images/Endpoint%20API.png
