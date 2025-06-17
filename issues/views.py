@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import IssueForm
@@ -9,6 +10,9 @@ def report_issue_form(request):
         form = IssueForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(
+                request, "Zgłoszono nowy problem.", extra_tags="message_success"
+            )
             return redirect("issue_list")
     else:
         form = IssueForm()

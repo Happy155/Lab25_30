@@ -29,6 +29,9 @@ def add_category(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(
+                request, "Dodano nową kategorię.", extra_tags="message_success"
+            )
             return redirect("category_list")
     else:
         form = CategoryForm()
@@ -41,6 +44,9 @@ def add_course(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(
+                request, "Dodano nowe szkolenie.", extra_tags="message_success"
+            )
             return redirect("course_list")
     else:
         form = CourseForm()
