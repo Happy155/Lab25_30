@@ -59,23 +59,52 @@ Po wykonaniu powyższych kroków strona powinna już działać i być dostępna 
 
 Do repozytorium dołączona została wstępnie wypełniona baza danych, w której znajduje się również utworzone konto administratora. Dane logowania do konta administratora to login `admin` oraz hasło `admin`.
 
+## Dostępne strony
+Poniższa lista przedstawia dostępne strony aplikacji, zakładając, że działa ona pod adresem http://localhost:8000 oraz wykorzystuje dołączoną do repozytorium bazę danych.
+
+### Oferta panel
+- http://127.0.0.1:8000/offer-mng/
+- http://127.0.0.1:8000/offer-mng/categ-lst
+- http://127.0.0.1:8000/offer-mng/categ-add
+- http://127.0.0.1:8000/offer-mng/categ-edit/1/
+- http://127.0.0.1:8000/offer-mng/course-lst
+- http://127.0.0.1:8000/offer-mng/course-add
+- http://127.0.0.1:8000/offer-mng/course-edit/1/
+
+### Oferta publiczna
+- http://127.0.0.1:8000/offer/
+- http://127.0.0.1:8000/offer/Kompetencje%20mi%C4%99kkie/
+- http://127.0.0.1:8000/offer/Kompetencje%20mi%C4%99kkie/course/1/
+
+### Rejestracja na szkolenie
+- http://127.0.0.1:8000/register/
+
+### Lista z problemami
+- http://127.0.0.1:8000/issues/
+- http://127.0.0.1:8000/issues/1/
+- http://127.0.0.1:8000/issues/report
+
+### API
+- http://127.0.0.1:8000/api/categories/
+- http://127.0.0.1:8000/api/courses/
+- http://127.0.0.1:8000/api/registers/
+- http://127.0.0.1:8000/api/register/1/
+- http://127.0.0.1:8000/api/register/
+- http://127.0.0.1:8000/api/problems/
+- http://127.0.0.1:8000/api/problem-report/
+
+### Pozostałe strony
+- http://127.0.0.1:8000/api/documentation/
+- http://127.0.0.1:8000/members/login
+- http://127.0.0.1:8000/members/register
+- http://127.0.0.1:8000/admin/
+
 ## Zrzuty ekranu
 ![Aplikacja publiczna][aplikacja-publiczna-screenshot]
 ![Aplikacja panel][aplikacja-panel-screenshot]
 ![Panel administracyjny][panel-administracyjny-screenshot]
 ![Formularz][formularz-screenshot]
 ![Endpoint API][endpoint-api-screenshot]
-
-
-
-
-
-
-
-
-
-
-
 
 [django]: https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green
 [django-url]: https://www.djangoproject.com/
